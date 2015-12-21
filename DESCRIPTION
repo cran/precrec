@@ -1,8 +1,8 @@
 Package: precrec
 Type: Package
 Title: Calculate Accurate Precision-Recall and ROC Curves
-Version: 0.1.1
-Date: 2015-12-04
+Version: 0.2.0
+Date: 2015-12-21
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
@@ -20,9 +20,9 @@ Imports: Rcpp (>= 0.12.2), ggplot2 (>= 1.0.1), assertthat (>= 0.1),
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2015-12-04 11:52:34 UTC; takaya
+Packaged: 2015-12-21 17:43:48 UTC; takaya
 Author: Takaya Saito [aut, cre],
   Marc Rehmsmeier [aut]
 Maintainer: Takaya Saito <takaya.saito@outlook.com>
 Repository: CRAN
-Date/Publication: 2015-12-04 15:40:36
+Date/Publication: 2015-12-21 21:44:45

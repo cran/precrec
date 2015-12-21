@@ -18,10 +18,6 @@ plot(sscurves, "PRC")
 # The ggplot2 package is required 
 library(ggplot2)
 
-# The grid and gridExtra packages are required to use multiple panels with autoplot
-library(grid)
-library(gridExtra)
-
 # Show ROC and Precision-Recall plots
 autoplot(sscurves)
 
