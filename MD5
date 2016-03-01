@@ -1,5 +1,6 @@
-1164ba528697473f44eaff9c74745269 *DESCRIPTION
+9f2e45611ce24017284364a591570dfe *DESCRIPTION
 118bacd66272e83fe5f753248899422c *NAMESPACE
+b27d844cf17f351321f07f64a557919a *NEWS.md
 2136e32c93677dc3714f9d411984e69d *R/RcppExports.R
 34c191b83253f8f23165ef4987e84d38 *R/etc_create_samples.R
 4ea96cd69ea3a655203c7520b1abf889 *R/etc_utils.R
@@ -25,7 +26,7 @@ e9142c2f9c770a934670e99869547054 *R/pl2_pipeline_main_rocprc.R
 de4ba60d39f3e5260c6b191e4b53f44b *R/pl5_create_curves.R
 e85e28ad6857678e4d39417ec876ac81 *R/pl6_calc_average.R
 2048ed5ed885a38bf88a9f0f0ea14c2c *R/precrec.R
-11a5f158db447cc427cf7302d43d0171 *README.md
+95fc418e04ca9cf4afa67427120d22f0 *README.md
 788d71cf635b9546531e33e059b3cc48 *build/vignette.rds
 63c69fc5ff4c0a9d40b78b2bb2585604 *data/B1000.rda
 60c06302862a4b1e93f1030cb95ec840 *data/B500.rda
@@ -33,8 +34,8 @@ e85e28ad6857678e4d39417ec876ac81 *R/pl6_calc_average.R
 5a88a7a04f27a1e64d38ce6504634352 *data/IB500.rda
 3ee369d6d92216332eda6727f3f8d203 *data/P10N10.rda
 131ff15b80a69bdc0da5dc5dff8ab7ba *inst/doc/introduction.R
-c6f9ca14940fd7731e72bfa487ed47d1 *inst/doc/introduction.Rmd
-496f3bc61c9f943bc34c52c70e76a4d2 *inst/doc/introduction.html
+c33288ba63c21a444fa17a3e07392bdf *inst/doc/introduction.Rmd
+0dc1b2a52f2882e0244b86e452224e48 *inst/doc/introduction.html
 a03d071ab3ebaf7b013dfbffbe714014 *man/B1000.Rd
 813ae6a46cea1d3e3b012a8897746ac4 *man/B500.Rd
 9520ebe2da5987c1c3e11264ad6402d1 *man/IB1000.Rd
@@ -63,8 +64,8 @@ dc6dc1b4f90748b7388736f6650bf9ec *src/get_score_ranks.cpp
 90cdd4b84df44253458421abad7bca8c *tests/testthat.R
 e171af6193661c7d9d81266ebe585cac *tests/testthat/test_g_auc.R
 5526f4d730dfef9cd9d2ca368e99ac06 *tests/testthat/test_g_autoplot1_pl.R
-86e6bd96f36be6ecc13cbf21c017acb5 *tests/testthat/test_g_autoplot2_curves.R
-952a0a904ed840b5da0a4a17fcf85e78 *tests/testthat/test_g_autoplot3_points.R
+c0079841a87e24a43667f287cc02b926 *tests/testthat/test_g_autoplot2_curves.R
+efad02092ca8a12ec8f02b8cc181f8ae *tests/testthat/test_g_autoplot3_points.R
 ed08dd9bf7cbb3d49c694ad8953d056a *tests/testthat/test_g_fortify1_pl.R
 87d2f65928c5dba4f1b21489b665deb2 *tests/testthat/test_g_fortify2_curves.R
 565aee4a5ed6474df23348390bfc09d3 *tests/testthat/test_g_fortify3_points.R
@@ -90,4 +91,4 @@ e2a64350b5b74bfc69eb47ec5b32caec *tests/testthat/test_pl5_2_create_prc.R
 c9a4e69b54913d85e47bccb0af4cc767 *tests/testthat/test_pl5_3_create_curves.R
 df257878c1f8892bde563d9acbda5ea2 *tests/testthat/test_pl6_1_calc_avg_points.R
 f2b492a2c3f6b2791ac9602bfa7579d2 *tests/testthat/test_pl6_2_calc_avg_curves.R
-c6f9ca14940fd7731e72bfa487ed47d1 *vignettes/introduction.Rmd
+c33288ba63c21a444fa17a3e07392bdf *vignettes/introduction.Rmd
