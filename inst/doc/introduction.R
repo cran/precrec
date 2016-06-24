@@ -37,6 +37,14 @@ knitr::kable(aucs_prc)
 
 
 ## ------------------------------------------------------------------------
+# Convert sscurves to a data frame
+sscurves.df <- as.data.frame(sscurves)
+
+# Use knitr::kable to display the result in a table format
+knitr::kable(head(sscurves.df))
+
+
+## ------------------------------------------------------------------------
 s1 <- c(1, 2, 3, 4)
 s2 <- c(5, 6, 7, 8)
 s3 <- matrix(1:8, 4, 2)
@@ -98,6 +106,14 @@ mscurves <- evalmod(msmdat3)
 autoplot(mscurves)
 
 ## ------------------------------------------------------------------------
+# Convert mscurves to a data frame
+mscurves.df <- as.data.frame(mscurves)
+
+# Use knitr::kable to display the result in a table format
+knitr::kable(head(mscurves.df))
+
+
+## ------------------------------------------------------------------------
 # Specify test dataset IDs names
 smmdat1 <- mmdata(scores1, labels2, dsids = c(1,2))
 
@@ -114,6 +130,14 @@ autoplot(smcurves, "PRC")
 
 # Show raw Precision-Recall curves
 autoplot(smcurves, "PRC", raw_curves = TRUE)
+
+## ------------------------------------------------------------------------
+# Convert smcurves to a data frame
+smcurves.df <- as.data.frame(smcurves)
+
+# Use knitr::kable to display the result in a table format
+knitr::kable(head(smcurves.df))
+
 
 ## ------------------------------------------------------------------------
 # Specify model names and test dataset IDs names
@@ -133,6 +157,14 @@ autoplot(mmcurves, "PRC")
 
 # Show average Precision-Recall curves with the 95% confidence bounds
 autoplot(mmcurves, "PRC", show_cb = TRUE)
+
+## ------------------------------------------------------------------------
+# Convert smcurves to a data frame
+mmcurves.df <- as.data.frame(mmcurves)
+
+# Use knitr::kable to display the result in a table format
+knitr::kable(head(mmcurves.df))
+
 
 ## ------------------------------------------------------------------------
 # Balanced dataset
@@ -165,12 +197,24 @@ autoplot(simcurves2)
 mmpoins <- evalmod(mmmdat2, mode = "basic")
 
 ## ---- fig.width=7, fig.show='hold'---------------------------------------
-# Show normalized threshold values vs. error rate and accuracy
+# Show normalized ranks vs. error rate and accuracy
 autoplot(mmpoins, c("error", "accuracy"))
 
-# Show normalized threshold values vs. specificity and sensitivity
-autoplot(mmpoins, c("specificity", "sensitivity"))
+# Show normalized ranks vs. specificity, sensitivity, and precision
+autoplot(mmpoins, c("specificity", "sensitivity", "precision"))
 
-# Show normalized threshold values vs. precision
-autoplot(mmpoins, "precision")
+# Show normalized ranks vs. Matthews correlation coefficient and F-score
+autoplot(mmpoins, c("mcc", "fscore"))
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# Show normalized ranks vs. scores and labels
+autoplot(mmpoins, c("score", "label"))
+
+## ------------------------------------------------------------------------
+# Convert mmpoins to a data frame
+mmpoins.df <- as.data.frame(mmpoins)
+
+# Use knitr::kable to display the result in a table format
+knitr::kable(head(mmpoins.df))
+
 
