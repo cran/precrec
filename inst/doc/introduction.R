@@ -167,32 +167,6 @@ knitr::kable(head(mmcurves.df))
 
 
 ## ------------------------------------------------------------------------
-# Balanced dataset
-samps5 <- create_sim_samples(100, 100, 100, "all")
-simmdat1 <- mmdata(samps5[["scores"]], samps5[["labels"]], 
-                   modnames = samps5[["modnames"]], dsids = samps5[["dsids"]])
-
-# Imbalanced dataset
-samps6 <- create_sim_samples(100, 25, 100, "all")
-simmdat2 <- mmdata(samps6[["scores"]], samps6[["labels"]], 
-                   modnames = samps6[["modnames"]], dsids = samps6[["dsids"]])
-
-
-## ------------------------------------------------------------------------
-# Balanced dataset
-simcurves1 <- evalmod(simmdat1)
-
-# Imbalanced dataset
-simcurves2 <- evalmod(simmdat2)
-
-## ---- fig.width=7, fig.show='hold'---------------------------------------
-# Balanced dataset
-autoplot(simcurves1)
-
-# Imbalanced dataset
-autoplot(simcurves2)
-
-## ------------------------------------------------------------------------
 # Calculate basic evaluation measures
 mmpoins <- evalmod(mmmdat2, mode = "basic")
 
@@ -217,4 +191,47 @@ mmpoins.df <- as.data.frame(mmpoins)
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(mmpoins.df))
 
+
+## ------------------------------------------------------------------------
+# Calculate ROC and Precision-Recall curves
+curves <- evalmod(scores = P10N10$scores, labels = P10N10$labels)
+
+# Calculate partial AUCs
+curves.part <- part(curves, xlim = c(0.0, 0.25))
+
+# Retrieve a dataframe of pAUCs
+paucs.df <- pauc(curves.part)
+
+# Use knitr::kable to display the result in a table format
+knitr::kable(paucs.df)
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# Show ROC and Precision-Recall curves
+autoplot(curves.part)
+
+## ------------------------------------------------------------------------
+# Balanced dataset
+samps5 <- create_sim_samples(100, 100, 100, "all")
+simmdat1 <- mmdata(samps5[["scores"]], samps5[["labels"]], 
+                   modnames = samps5[["modnames"]], dsids = samps5[["dsids"]])
+
+# Imbalanced dataset
+samps6 <- create_sim_samples(100, 25, 100, "all")
+simmdat2 <- mmdata(samps6[["scores"]], samps6[["labels"]], 
+                   modnames = samps6[["modnames"]], dsids = samps6[["dsids"]])
+
+
+## ------------------------------------------------------------------------
+# Balanced dataset
+simcurves1 <- evalmod(simmdat1)
+
+# Imbalanced dataset
+simcurves2 <- evalmod(simmdat2)
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# Balanced dataset
+autoplot(simcurves1)
+
+# Imbalanced dataset
+autoplot(simcurves2)
 
