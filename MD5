@@ -1,4 +1,4 @@
-2728091d3706f6c72665b9db516a91da *DESCRIPTION
+973e9e933b41bf0354b2757ca52d92b7 *DESCRIPTION
 dcc3c1f5ed62206f6cfc4cd91171b188 *NAMESPACE
 c0267f0746613246bbcd91f96d690a23 *R/RcppExports.R
 34c191b83253f8f23165ef4987e84d38 *R/etc_create_samples.R
@@ -29,7 +29,7 @@ da216898a6658c795009bc9673b74f57 *R/main_evalmod.R
 04d85f80b2b31526612cd288073de851 *R/pl5_create_curves.R
 af28c6e79a31f1cdadbd57acbb9c4cde *R/pl6_calc_average.R
 2048ed5ed885a38bf88a9f0f0ea14c2c *R/precrec.R
-22405aa9fa7eb90c72892a68b93e7f0d *README.md
+bcb1d04649bea97bdc132c8d60db2875 *README.md
 b5f57dad00ea5bbad3fa603d33df3df0 *build/vignette.rds
 63c69fc5ff4c0a9d40b78b2bb2585604 *data/B1000.rda
 60c06302862a4b1e93f1030cb95ec840 *data/B500.rda
@@ -39,7 +39,7 @@ b5f57dad00ea5bbad3fa603d33df3df0 *build/vignette.rds
 90daef6d8519ef2a836cf8862257f686 *inst/CITATION
 95fec21e0c2707d14d06c928257fa705 *inst/doc/introduction.R
 7546fd7c8c9659b2e310ad73bb27695e *inst/doc/introduction.Rmd
-cc14f33b87b14642e9f2602f0ab6f445 *inst/doc/introduction.html
+db45529c858cd764fe20be9a65de7348 *inst/doc/introduction.html
 a03d071ab3ebaf7b013dfbffbe714014 *man/B1000.Rd
 813ae6a46cea1d3e3b012a8897746ac4 *man/B500.Rd
 9520ebe2da5987c1c3e11264ad6402d1 *man/IB1000.Rd
