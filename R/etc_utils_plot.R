@@ -73,6 +73,7 @@
 #'     }
 #'   }
 #'   \item{type}{
+#'     A character to specifiy the line type as follows.
 #'     \describe{
 #'       \item{"l"}{lines}
 #'       \item{"p"}{points}
@@ -103,11 +104,9 @@
 #'
 #' @examples
 #'
-#' #############################################################################
+#' ##################################################
 #' ### Single model & single test dataset
 #' ###
-#'
-#'\dontrun{
 #'
 #' ## Load a dataset with 10 positives and 10 negatives
 #' data(P10N10)
@@ -134,13 +133,10 @@
 #' ## Plot normalized ranks vs. precision
 #' plot(sspoints, curvetype = "precision")
 #'
-#'}
 #'
-#' #############################################################################
+#' ##################################################
 #' ### Multiple models & single test dataset
 #' ###
-#'
-#'\dontrun{
 #'
 #' ## Create sample datasets with 100 positives and 100 negatives
 #' samps <- create_sim_samples(1, 100, 100, "all")
@@ -165,13 +161,10 @@
 #' ## Hide the legend
 #' plot(mspoints, show_legend = FALSE)
 #'
-#'}
 #'
-#' #############################################################################
+#' ##################################################
 #' ### Single model & multiple test datasets
 #' ###
-#'
-#'\dontrun{
 #'
 #' ## Create sample datasets with 100 positives and 100 negatives
 #' samps <- create_sim_samples(10, 100, 100, "good_er")
@@ -197,13 +190,10 @@
 #' ## Plot normalized ranks vs. average basic evaluation measures
 #' plot(smpoints)
 #'
-#'}
 #'
-#' #############################################################################
+#' ##################################################
 #' ### Multiple models & multiple test datasets
 #' ###
-#'
-#'\dontrun{
 #'
 #' ## Create sample datasets with 100 positives and 100 negatives
 #' samps <- create_sim_samples(10, 100, 100, "all")
@@ -228,7 +218,6 @@
 #'
 #' ## Plot normalized ranks vs. average basic evaluation measures
 #' plot(mmpoints)
-#'}
 #'
 #' @name plot
 NULL
@@ -354,7 +343,6 @@ NULL
 # Plot ROC and Precision-Recall
 #
 .plot_multi <- function(x, arglist) {
-
   curvetype <- arglist[["curvetype"]]
   type <- arglist[["type"]]
   show_cb <- arglist[["show_cb"]]
@@ -629,6 +617,8 @@ NULL
                    precision = "prec", mcc = "mcc", fscore = "fscore")
     if (curvetype == "mcc") {
       main <- "MCC"
+    } else if (curvetype == "label") {
+      main <- "Label (1:pos, -1:neg)"
     } else {
       main <- paste0(toupper(substring(curvetype, 1, 1)), substring(curvetype, 2))
     }

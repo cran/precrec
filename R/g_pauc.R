@@ -29,7 +29,7 @@
 #'
 #' @examples
 #'
-#' #############################################################################
+#' ##################################################
 #' ### Single model & single test dataset
 #' ###
 #'
@@ -45,7 +45,7 @@
 #' ## Shows pAUCs
 #' pauc(sscurves.part)
 #'
-#' #############################################################################
+#' ##################################################
 #' ### Multiple models & single test dataset
 #' ###
 #'
@@ -63,12 +63,12 @@
 #' ## Shows pAUCs
 #' pauc(mscurves.part)
 #'
-#' #############################################################################
+#' ##################################################
 #' ### Single model & multiple test datasets
 #' ###
 #'
 #' ## Create sample datasets with 100 positives and 100 negatives
-#' samps <- create_sim_samples(10, 100, 100, "good_er")
+#' samps <- create_sim_samples(4, 100, 100, "good_er")
 #' mdat <- mmdata(samps[["scores"]], samps[["labels"]],
 #'                modnames = samps[["modnames"]],
 #'                dsids = samps[["dsids"]])
@@ -82,12 +82,12 @@
 #' ## Shows pAUCs
 #' pauc(smcurves.part)
 #'
-#' #############################################################################
+#' ##################################################
 #' ### Multiple models & multiple test datasets
 #' ###
 #'
 #' ## Create sample datasets with 100 positives and 100 negatives
-#' samps <- create_sim_samples(10, 100, 100, "all")
+#' samps <- create_sim_samples(4, 100, 100, "all")
 #' mdat <- mmdata(samps[["scores"]], samps[["labels"]],
 #'                modnames = samps[["modnames"]],
 #'                dsids = samps[["dsids"]])
@@ -112,7 +112,7 @@ pauc.default <- function(curves) {
 #
 # Print AUC scores
 #
-#' @rdname auc
+#' @rdname pauc
 #' @export
 pauc.aucs <- function(curves) {
   # Validation

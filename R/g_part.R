@@ -44,8 +44,12 @@
 #'   of pAUCs.
 #'
 #' @examples
+#' \dontrun{
 #'
-#' #############################################################################
+#' ## Load library
+#' library(ggplot2)
+#'
+#' ##################################################
 #' ### Single model & single test dataset
 #' ###
 #'
@@ -58,8 +62,17 @@
 #' ## Calculate partial AUCs
 #' sscurves.part <- part(sscurves, xlim = c(0.25, 0.75))
 #'
+#' ## Show AUCs
+#' sscurves.part
 #'
-#' #############################################################################
+#' ## Plot partial curve
+#' plot(sscurves.part)
+#'
+#' ## Plot partial curve with ggplot
+#' autoplot(sscurves.part)
+#'
+#'
+#' ##################################################
 #' ### Multiple models & single test dataset
 #' ###
 #'
@@ -74,13 +87,22 @@
 #' ## Calculate partial AUCs
 #' mscurves.part <- part(mscurves, xlim = c(0, 0.75), ylim = c(0.25, 0.75))
 #'
+#' ## Show AUCs
+#' mscurves.part
 #'
-#' #############################################################################
+#' ## Plot partial curves
+#' plot(mscurves.part)
+#'
+#' ## Plot partial curves with ggplot
+#' autoplot(mscurves.part)
+#'
+#'
+#' ##################################################
 #' ### Single model & multiple test datasets
 #' ###
 #'
 #' ## Create sample datasets with 100 positives and 100 negatives
-#' samps <- create_sim_samples(10, 100, 100, "good_er")
+#' samps <- create_sim_samples(4, 100, 100, "good_er")
 #' mdat <- mmdata(samps[["scores"]], samps[["labels"]],
 #'                modnames = samps[["modnames"]],
 #'                dsids = samps[["dsids"]])
@@ -91,12 +113,22 @@
 #' ## Calculate partial AUCs
 #' smcurves.part <- part(smcurves, xlim = c(0.25, 0.75))
 #'
-#' #############################################################################
+#' ## Show AUCs
+#' smcurves.part
+#'
+#' ## Plot partial curve
+#' plot(smcurves.part)
+#'
+#' ## Plot partial curve with ggplot
+#' autoplot(smcurves.part)
+#'
+#'
+#' ##################################################
 #' ### Multiple models & multiple test datasets
 #' ###
 #'
 #' ## Create sample datasets with 100 positives and 100 negatives
-#' samps <- create_sim_samples(10, 100, 100, "all")
+#' samps <- create_sim_samples(4, 100, 100, "all")
 #' mdat <- mmdata(samps[["scores"]], samps[["labels"]],
 #'                modnames = samps[["modnames"]],
 #'                dsids = samps[["dsids"]])
@@ -106,6 +138,16 @@
 #'
 #' ## Calculate partial AUCs
 #' mmcurves.part <- part(mmcurves, xlim = c(0, 0.25))
+#'
+#' ## Show AUCs
+#' mmcurves.part
+#'
+#' ## Plot partial curves
+#' plot(mmcurves.part)
+#'
+#' ## Plot partial curves with ggplot
+#' autoplot(mmcurves.part)
+#' }
 #'
 #' @export
 part <- function(curves, xlim, ylim, curvetype) UseMethod("part")
