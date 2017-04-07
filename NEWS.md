@@ -1,3 +1,11 @@
+# precrec 0.7.1
+
+* Add precrec_init.c to avoid CRAN warnings
+
+# precrec 0.7
+
+* Add reduce_points option to autoplot
+
 # precrec 0.6.2
 
 * Fix mdat print

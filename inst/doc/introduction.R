@@ -24,6 +24,20 @@ autoplot(sscurves)
 # Show a Precision-Recall plot
 autoplot(sscurves, "PRC")
 
+## ---- fig.show = 'hide', results = 'hold'--------------------------------
+
+# 5 data sets with 50000 positives and 50000 negatives
+samp1 <- create_sim_samples(5, 50000, 50000)
+
+# Calculate curves
+eval1 <- evalmod(scores = samp1$scores, labels = samp1$labels)
+
+# Reduced supporting points
+system.time(autoplot(eval1))
+
+# Full supporting points
+system.time(autoplot(eval1, reduce_points = FALSE))
+
 ## ------------------------------------------------------------------------
 # Get a data frame with AUC scores
 aucs <- auc(sscurves)
