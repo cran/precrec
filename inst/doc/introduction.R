@@ -140,10 +140,10 @@ smcurves <- evalmod(smmdat2, raw_curves = TRUE)
 
 ## ---- fig.width=7, fig.show='hold'---------------------------------------
 # Show an average Precision-Recall curve with the 95% confidence bounds
-autoplot(smcurves, "PRC")
+autoplot(smcurves, "PRC", show_cb = TRUE)
 
 # Show raw Precision-Recall curves
-autoplot(smcurves, "PRC", raw_curves = TRUE)
+autoplot(smcurves, "PRC", show_cb = FALSE)
 
 ## ------------------------------------------------------------------------
 # Convert smcurves to a data frame
@@ -179,6 +179,30 @@ mmcurves.df <- as.data.frame(mmcurves)
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(mmcurves.df))
 
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# Show all curves
+smcurves_all <- evalmod(smmdat2, raw_curves = TRUE)
+autoplot(smcurves_all)
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# x_bins: 2
+smcurves_xb2 <- evalmod(smmdat2, x_bins = 2)
+autoplot(smcurves_xb2)
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# x_bins: 10
+smcurves_xb10 <- evalmod(smmdat2, x_bins = 10)
+autoplot(smcurves_xb10)
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# cb_alpha: 0.1 for 90% confidence band
+smcurves_cb1 <- evalmod(smmdat2, x_bins = 10, cb_alpha = 0.1)
+autoplot(smcurves_cb1)
+
+# cb_alpha: 0.01 for 99% confidence band
+smcurves_cb2 <- evalmod(smmdat2, x_bins = 10, cb_alpha = 0.01)
+autoplot(smcurves_cb2)
 
 ## ------------------------------------------------------------------------
 # Calculate basic evaluation measures
@@ -222,6 +246,16 @@ knitr::kable(paucs.df)
 ## ---- fig.width=7, fig.show='hold'---------------------------------------
 # Show ROC and Precision-Recall curves
 autoplot(curves.part)
+
+## ------------------------------------------------------------------------
+# Calculate AUC (ROC)
+aucs <- evalmod(scores = P10N10$scores, labels = P10N10$labels, mode = 'aucroc')
+
+# Convert to data.frame
+aucs.df <- as.data.frame(aucs)
+
+# Use knitr::kable to display the result in a table format
+knitr::kable(aucs.df)
 
 ## ------------------------------------------------------------------------
 # Balanced dataset
