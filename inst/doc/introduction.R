@@ -205,6 +205,37 @@ smcurves_cb2 <- evalmod(smmdat2, x_bins = 10, cb_alpha = 0.01)
 autoplot(smcurves_cb2)
 
 ## ------------------------------------------------------------------------
+# Load data
+data(M2N50F5)
+
+# Use knitr::kable to display the result in a table format
+knitr::kable(head(M2N50F5))
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# Convert data frame to list
+nfold_list1 = format_nfold(nfold_df = M2N50F5,  score_cols = c(1, 2), 
+                           lab_col = 3, fold_col = 4)
+
+# Use column names
+nfold_list2 = format_nfold(nfold_df = M2N50F5, score_cols = c("score1", "score2"),
+                           lab_col = "label", fold_col = "fold")
+
+# Use the result for evalmod
+cvcurves <- evalmod(scores = nfold_list2$scores, labels = nfold_list2$labels,
+                    modnames = rep(c("m1", "m2"), each = 5), dsids = rep(1:5, 2))
+autoplot(cvcurves)
+
+## ---- fig.width=7, fig.show='hold'---------------------------------------
+# mmdata
+cvcurves2 <- mmdata(nfold_df = M2N50F5, score_cols = c(1, 2), lab_col = 3, fold_col = 4, 
+                    modnames = c("m1", "m2"), dsids = 1:5)
+
+# evalmod
+cvcurves3 <- evalmod(nfold_df = M2N50F5, score_cols = c(1, 2), lab_col = 3, fold_col = 4, 
+                     modnames = c("m1", "m2"), dsids = 1:5)
+autoplot(cvcurves3)
+
+## ------------------------------------------------------------------------
 # Calculate basic evaluation measures
 mmpoins <- evalmod(mmmdat2, mode = "basic")
 

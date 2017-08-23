@@ -2,8 +2,8 @@ Package: precrec
 Type: Package
 Title: Calculate Accurate Precision-Recall and ROC (Receiver Operator
         Characteristics) Curves
-Version: 0.8.0
-Date: 2017-06-23
+Version: 0.9.1
+Date: 2017-08-23
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
@@ -22,9 +22,9 @@ Imports: Rcpp (>= 0.12.2), ggplot2 (>= 2.1.0), assertthat (>= 0.1),
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2017-06-23 15:24:35 UTC; takaya
+Packaged: 2017-08-23 04:21:34 UTC; takaya
 Author: Takaya Saito [aut, cre],
   Marc Rehmsmeier [aut]
 Maintainer: Takaya Saito <takaya.saito@outlook.com>
 Repository: CRAN
-Date/Publication: 2017-06-23 19:04:21 UTC
+Date/Publication: 2017-08-23 07:21:31 UTC
