@@ -1,6 +1,6 @@
-a046c7c2e1597756dcc62648ab2a8371 *DESCRIPTION
+0d3f5bf9460cd01441ffec8d5e8bd9dc *DESCRIPTION
 ed58dce336b4ab9eeeaf3c65a5c8c222 *NAMESPACE
-a0ce1d9be3d6d8b0610e5f0a22a6fb2e *NEWS.md
+956082ab13f660ba5acd64771370da6f *NEWS.md
 885563b78fb49ea744f83c5c973220a9 *R/RcppExports.R
 633100206999cf05ae000c4741c95a2d *R/etc_create_samples.R
 cd1da7c8609727b9f66757f2acda631e *R/etc_utils.R
@@ -23,7 +23,7 @@ d5acf60ce0c049fc0fc11c64f275a1a3 *R/main_evalmod.R
 6f9e6132e5dda253400c0ff4dded23c0 *R/mm1_create_mmdat.R
 538beea71b6c8fe45f29911b8fd89202 *R/mm2_join_data.R
 3edeb35fbed07366e84cbd8be149e05b *R/mm3_reformat_data.R
-d72282f41b0f833b96615289ddf9b685 *R/mm4_format_nfold.R
+c061eb976f993ef6ff6111d123c1258d *R/mm4_format_nfold.R
 84fa00179450c5d8e83e120d87da7bc5 *R/pl1_pipeline_main.R
 a7b4a9ccd81c06d6999e70f518873000 *R/pl2_pipeline_main_aucroc.R
 c8f8fe7eeaff6d86cf3a1946727357f8 *R/pl2_pipeline_main_basic.R
@@ -45,7 +45,7 @@ eb50cae61e9fc3b7a8658edbdacac519 *data/M2N50F5.rda
 15b5aa24cc6f8bcf3d9d1511fa2746c6 *inst/CITATION
 d1214b1d7dac1aaaae37a571aea2c48f *inst/doc/introduction.R
 9b822ecf6f6fdb3ea3ffba3c3b8ba185 *inst/doc/introduction.Rmd
-fd785034e2499e933469407b0397b353 *inst/doc/introduction.html
+fc72aed9fc9d008987f9f03986d1f540 *inst/doc/introduction.html
 e161e0ed9d500e5c8a53a0834c753e42 *man/B1000.Rd
 0197127417a8e39275f1c639c43c3578 *man/B500.Rd
 aa6ebacc0ad8d72de161c36b4f0f89c5 *man/IB1000.Rd
@@ -99,7 +99,7 @@ d873b15a1914329412f14e9c3f51b992 *tests/testthat/test_mm2_3_join_labels.R
 d69b156c0c52bd08706cbf79ee0d5bf0 *tests/testthat/test_mm3_1_reformat_data_scores.R
 36c8b930f6a84cdec42abbdeff3d7935 *tests/testthat/test_mm3_2_reformat_data_labels.R
 d6c7315d7fc7374dbfa867dc05f4909c *tests/testthat/test_mm3_3_reformat_data_main.R
-f6e480735b6660eebfc4f282965a0eca *tests/testthat/test_mm4_1_format_nfold.R
+09f5eec0afb402717f5f9730f5dc8dc2 *tests/testthat/test_mm4_1_format_nfold.R
 e75d50fecc4c16fe0c91cdd506864081 *tests/testthat/test_pl1_1_pl_main.R
 07e59c6004566a74d2433cdc86a03dd3 *tests/testthat/test_pl2_1_pl_main_rocprc.R
 ce9a15f36093503d90183ba6d8427fd7 *tests/testthat/test_pl2_2_pl_main_basic.R
@@ -112,5 +112,5 @@ e2a64350b5b74bfc69eb47ec5b32caec *tests/testthat/test_pl5_2_create_prc.R
 c9a4e69b54913d85e47bccb0af4cc767 *tests/testthat/test_pl5_3_create_curves.R
 9c00c39fad2e8ed068ee442e379aced4 *tests/testthat/test_pl6_1_calc_avg_points.R
 e388b977baed32d97d7f330f36d9dc71 *tests/testthat/test_pl6_2_calc_avg_curves.R
-aae34db18ace81c9de9bec5e98bd4d4d *tests/testthat/test_uc1_usecases.R
+98fa630066df6e299afe1e8b683a45a2 *tests/testthat/test_uc1_usecases.R
 9b822ecf6f6fdb3ea3ffba3c3b8ba185 *vignettes/introduction.Rmd
