@@ -1,6 +1,6 @@
-832b64ea7c862317d4bdc0af0343ed62 *DESCRIPTION
+475269da49cf5e0c4b84b105356d01e9 *DESCRIPTION
 ed58dce336b4ab9eeeaf3c65a5c8c222 *NAMESPACE
-5966397acef7f791c521703ad09c7071 *NEWS.md
+d5b7f342a022ea46e803402db24ab037 *NEWS.md
 885563b78fb49ea744f83c5c973220a9 *R/RcppExports.R
 633100206999cf05ae000c4741c95a2d *R/etc_create_samples.R
 cd1da7c8609727b9f66757f2acda631e *R/etc_utils.R
@@ -45,7 +45,7 @@ eb50cae61e9fc3b7a8658edbdacac519 *data/M2N50F5.rda
 15b5aa24cc6f8bcf3d9d1511fa2746c6 *inst/CITATION
 d1214b1d7dac1aaaae37a571aea2c48f *inst/doc/introduction.R
 f800e9fc7113909c9b745c36a973d9d7 *inst/doc/introduction.Rmd
-89c1ab482371bffae713c4904b239914 *inst/doc/introduction.html
+3ffba58ced70fa84a255ac0f732bc0d3 *inst/doc/introduction.html
 e161e0ed9d500e5c8a53a0834c753e42 *man/B1000.Rd
 0197127417a8e39275f1c639c43c3578 *man/B500.Rd
 aa6ebacc0ad8d72de161c36b4f0f89c5 *man/IB1000.Rd
@@ -69,9 +69,9 @@ edc67bfb5df49a9899da4967941b6757 *man/format_nfold.Rd
 ec0c2650a0d5f2500a2c3a49c0e8740d *man/plot.Rd
 93677a801be64d8fcacd04cf32fff7b6 *man/precrec.Rd
 3bee96f9bb77a3515f040359c894d903 *src/RcppExports.cpp
-32f0a8d85f6804d3ab142b88a316bb53 *src/precrec_misc.cpp
-43d553e10ca740f05b0ca0717e71681f *src/precrec_misc.h
-8b2bec6dff5eb135db7c953ae4aee290 *src/precrec_mmx.cpp
+af57691ec39a97e040105a20c434df40 *src/precrec_misc.cpp
+673d114bf5b127b556b3ee3a318a0f0d *src/precrec_misc.h
+d59dfe2dbda35ca2e23533a388fdd783 *src/precrec_mmx.cpp
 75b962e570f3da8ae33853e7072c6440 *src/precrec_plx.cpp
 647ec00135d85440f0f02d7a42729958 *tests/testthat.R
 6a98fd26a18224145a14c0f3e48c2ea4 *tests/testthat/test_g_auc.R
