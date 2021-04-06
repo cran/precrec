@@ -1,3 +1,16 @@
+# precrec 0.12.5
+
+* Update citation
+
+# precrec 0.12.4
+
+* Transfer the GitHub repository to evalclass/precrec
+
+# precrec 0.12.2
+
+* Skip ggplot2 unit tests
+* Change default branch to main
+
 # precrec 0.12.1
 
 * Replace std::random_shuffle with a new function 
@@ -9,11 +22,11 @@
 
 # precrec 0.11.2
 
-* format_nfold function returns lables as interger even given as factor  
+* format_nfold function returns labels as integer even given as factor  
 
 # precrec 0.11.1
 
-* Update test cases to treat c(factor) as factor since c(factor) does not return interger anymore 
+* Update test cases to treat c(factor) as factor since c(factor) does not return integer anymore 
 
 # precrec 0.11
 
