@@ -15,7 +15,7 @@ plot(sscurves)
 plot(sscurves, "PRC")
 
 ## ---- fig.width=7, fig.show='hold'--------------------------------------------
-# The ggplot2 package is required 
+# The ggplot2 package is required
 library(ggplot2)
 
 # Show ROC and Precision-Recall plots
@@ -49,14 +49,12 @@ knitr::kable(aucs)
 aucs_prc <- subset(aucs, curvetypes == "PRC")
 knitr::kable(aucs_prc)
 
-
 ## -----------------------------------------------------------------------------
 # Convert sscurves to a data frame
 sscurves.df <- as.data.frame(sscurves)
 
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(sscurves.df))
-
 
 ## -----------------------------------------------------------------------------
 s1 <- c(1, 2, 3, 4)
@@ -86,7 +84,10 @@ msmdat <- mmdata(scores1, labels1)
 smmdat <- mmdata(scores1, labels2, dsids = c(1, 2))
 
 # Specify model names and dataset IDs
-mmmdat <- mmdata(scores1, labels2, modnames = c("mod1", "mod2"), dsids = c(1, 2))
+mmmdat <- mmdata(scores1, labels2,
+  modnames = c("mod1", "mod2"),
+  dsids = c(1, 2)
+)
 
 ## -----------------------------------------------------------------------------
 # A dataset with 10 positives and 10 negatives for the random performance level
@@ -109,7 +110,9 @@ msmdat1 <- mmdata(scores1, labels1)
 msmdat2 <- mmdata(scores1, labels1, modnames = c("mod1", "mod2"))
 
 # Use a sample dataset created by the create_sim_samples function
-msmdat3 <- mmdata(samps2[["scores"]], samps2[["labels"]], modnames = samps2[["modnames"]])
+msmdat3 <- mmdata(samps2[["scores"]], samps2[["labels"]],
+  modnames = samps2[["modnames"]]
+)
 
 ## -----------------------------------------------------------------------------
 # Calculate ROC and Precision-Recall curves for multiple models
@@ -126,13 +129,14 @@ mscurves.df <- as.data.frame(mscurves)
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(mscurves.df))
 
-
 ## -----------------------------------------------------------------------------
 # Specify test dataset IDs names
-smmdat1 <- mmdata(scores1, labels2, dsids = c(1,2))
+smmdat1 <- mmdata(scores1, labels2, dsids = c(1, 2))
 
 # Use a sample dataset created by the create_sim_samples function
-smmdat2 <- mmdata(samps3[["scores"]], samps3[["labels"]], dsids = samps3[["dsids"]])
+smmdat2 <- mmdata(samps3[["scores"]], samps3[["labels"]],
+  dsids = samps3[["dsids"]]
+)
 
 ## -----------------------------------------------------------------------------
 # Calculate curves for multiple test datasets and keep all the curves
@@ -152,14 +156,17 @@ smcurves.df <- as.data.frame(smcurves)
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(smcurves.df))
 
-
 ## -----------------------------------------------------------------------------
 # Specify model names and test dataset IDs names
-mmmdat1 <- mmdata(scores1, labels2, modnames= c("mod1", "mod2"), dsids = c(1, 2))
+mmmdat1 <- mmdata(scores1, labels2,
+  modnames = c("mod1", "mod2"),
+  dsids = c(1, 2)
+)
 
 # Use a sample dataset created by the create_sim_samples function
-mmmdat2 <- mmdata(samps4[["scores"]], samps4[["labels"]], 
-                  modnames = samps4[["modnames"]], dsids = samps4[["dsids"]])
+mmmdat2 <- mmdata(samps4[["scores"]], samps4[["labels"]],
+  modnames = samps4[["modnames"]], dsids = samps4[["dsids"]]
+)
 
 ## -----------------------------------------------------------------------------
 # Calculate curves for multiple models and multiple test datasets
@@ -178,7 +185,6 @@ mmcurves.df <- as.data.frame(mmcurves)
 
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(mmcurves.df))
-
 
 ## ---- fig.width=7, fig.show='hold'--------------------------------------------
 # Show all curves
@@ -213,26 +219,40 @@ knitr::kable(head(M2N50F5))
 
 ## ---- fig.width=7, fig.show='hold'--------------------------------------------
 # Convert data frame to list
-nfold_list1 = format_nfold(nfold_df = M2N50F5,  score_cols = c(1, 2), 
-                           lab_col = 3, fold_col = 4)
+nfold_list1 <- format_nfold(
+  nfold_df = M2N50F5, score_cols = c(1, 2),
+  lab_col = 3, fold_col = 4
+)
 
 # Use column names
-nfold_list2 = format_nfold(nfold_df = M2N50F5, score_cols = c("score1", "score2"),
-                           lab_col = "label", fold_col = "fold")
+nfold_list2 <- format_nfold(
+  nfold_df = M2N50F5,
+  score_cols = c("score1", "score2"),
+  lab_col = "label", fold_col = "fold"
+)
 
 # Use the result for evalmod
-cvcurves <- evalmod(scores = nfold_list2$scores, labels = nfold_list2$labels,
-                    modnames = rep(c("m1", "m2"), each = 5), dsids = rep(1:5, 2))
+cvcurves <- evalmod(
+  scores = nfold_list2$scores, labels = nfold_list2$labels,
+  modnames = rep(c("m1", "m2"), each = 5),
+  dsids = rep(1:5, 2)
+)
 autoplot(cvcurves)
 
 ## ---- fig.width=7, fig.show='hold'--------------------------------------------
 # mmdata
-cvcurves2 <- mmdata(nfold_df = M2N50F5, score_cols = c(1, 2), lab_col = 3, fold_col = 4, 
-                    modnames = c("m1", "m2"), dsids = 1:5)
+cvcurves2 <- mmdata(
+  nfold_df = M2N50F5, score_cols = c(1, 2),
+  lab_col = 3, fold_col = 4,
+  modnames = c("m1", "m2"), dsids = 1:5
+)
 
 # evalmod
-cvcurves3 <- evalmod(nfold_df = M2N50F5, score_cols = c(1, 2), lab_col = 3, fold_col = 4, 
-                     modnames = c("m1", "m2"), dsids = 1:5)
+cvcurves3 <- evalmod(
+  nfold_df = M2N50F5, score_cols = c(1, 2),
+  lab_col = 3, fold_col = 4,
+  modnames = c("m1", "m2"), dsids = 1:5
+)
 autoplot(cvcurves3)
 
 ## -----------------------------------------------------------------------------
@@ -260,7 +280,6 @@ mmpoins.df <- as.data.frame(mmpoins)
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(mmpoins.df))
 
-
 ## -----------------------------------------------------------------------------
 # Calculate ROC and Precision-Recall curves
 curves <- evalmod(scores = P10N10$scores, labels = P10N10$labels)
@@ -280,7 +299,7 @@ autoplot(curves.part)
 
 ## -----------------------------------------------------------------------------
 # Calculate AUC (ROC)
-aucs <- evalmod(scores = P10N10$scores, labels = P10N10$labels, mode = 'aucroc')
+aucs <- evalmod(scores = P10N10$scores, labels = P10N10$labels, mode = "aucroc")
 
 # Convert to data.frame
 aucs.df <- as.data.frame(aucs)
@@ -312,14 +331,15 @@ knitr::kable(auc_ci_t)
 ## -----------------------------------------------------------------------------
 # Balanced dataset
 samps5 <- create_sim_samples(100, 100, 100, "all")
-simmdat1 <- mmdata(samps5[["scores"]], samps5[["labels"]], 
-                   modnames = samps5[["modnames"]], dsids = samps5[["dsids"]])
+simmdat1 <- mmdata(samps5[["scores"]], samps5[["labels"]],
+  modnames = samps5[["modnames"]], dsids = samps5[["dsids"]]
+)
 
 # Imbalanced dataset
 samps6 <- create_sim_samples(100, 25, 100, "all")
-simmdat2 <- mmdata(samps6[["scores"]], samps6[["labels"]], 
-                   modnames = samps6[["modnames"]], dsids = samps6[["dsids"]])
-
+simmdat2 <- mmdata(samps6[["scores"]], samps6[["labels"]],
+  modnames = samps6[["modnames"]], dsids = samps6[["dsids"]]
+)
 
 ## -----------------------------------------------------------------------------
 # Balanced dataset

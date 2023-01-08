@@ -35,8 +35,10 @@
 #' head(M2N50F5)
 #'
 #' ## Convert with format_nfold
-#' nfold_list1 = format_nfold(nfold_df = M2N50F5, score_cols = c(1, 2),
-#'                           lab_col = 3, fold_col = 4)
+#' nfold_list1 <- format_nfold(
+#'   nfold_df = M2N50F5, score_cols = c(1, 2),
+#'   lab_col = 3, fold_col = 4
+#' )
 #'
 #' ## Show the list structure
 #' str(nfold_list1)
@@ -49,8 +51,10 @@
 #' ###
 #'
 #' ## Convert with format_nfold
-#' nfold_list2 = format_nfold(nfold_df = M2N50F5, score_cols = 1,
-#'                            lab_col = 3, fold_col = 4)
+#' nfold_list2 <- format_nfold(
+#'   nfold_df = M2N50F5, score_cols = 1,
+#'   lab_col = 3, fold_col = 4
+#' )
 #'
 #' ## Show the list structure
 #' str(nfold_list2)
@@ -63,9 +67,11 @@
 #' ###
 #'
 #' ## Convert with format_nfold
-#' nfold_list3 = format_nfold(nfold_df = M2N50F5,
-#'                            score_cols = c("score1", "score2"),
-#'                            lab_col = "label", fold_col = "fold")
+#' nfold_list3 <- format_nfold(
+#'   nfold_df = M2N50F5,
+#'   score_cols = c("score1", "score2"),
+#'   lab_col = "label", fold_col = "fold"
+#' )
 #'
 #' ## Show the list structure
 #' str(nfold_list3)
@@ -74,7 +80,6 @@
 #'
 #' @export
 format_nfold <- function(nfold_df, score_cols, lab_col, fold_col) {
-
   # Validate arguments
   .validate_format_nfold_args(nfold_df, score_cols, lab_col, fold_col)
 
@@ -83,11 +88,11 @@ format_nfold <- function(nfold_df, score_cols, lab_col, fold_col) {
   fids <- sort(unique(fold_vec))
 
   # Split data frame by dataset IDs
-  slcols = c(score_cols, lab_col)
+  slcols <- c(score_cols, lab_col)
   split_df <- lapply(fids, function(fid) nfold_df[fold_vec == fid, slcols])
 
   # Combine scores
-  f_comb_s = function(col_idx) {
+  f_comb_s <- function(col_idx) {
     lapply(seq_along(split_df), function(i) c(split_df[[i]][[col_idx]]))
   }
   scores <- unlist(lapply(seq_along(score_cols), f_comb_s), recursive = FALSE)
@@ -113,8 +118,8 @@ format_nfold <- function(nfold_df, score_cols, lab_col, fold_col) {
 #
 # Validate arguments of format_nfold()
 #
-.validate_format_nfold_args <- function(nfold_df, score_cols, lab_col, fold_col) {
-
+.validate_format_nfold_args <- function(nfold_df, score_cols,
+                                        lab_col, fold_col) {
   if (!is.data.frame(nfold_df)) {
     stop("nfold_df must be a data frame.", call. = FALSE)
   }
@@ -127,6 +132,4 @@ format_nfold <- function(nfold_df, score_cols, lab_col, fold_col) {
 
   # Check fold column name
   .validate_fold_col(fold_col, nfold_df)
-
 }
-

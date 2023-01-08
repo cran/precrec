@@ -3,7 +3,8 @@
 context("PL 1: Pipeline main")
 # Test .pmatch_mode(val)
 #      .make_prefix(model_type, data_type)
-#      pl_main(mdat, mode, calc_avg, cb_alpha, raw_curves, x_bins)
+#      pl_main(mdat, mode, calc_avg, cb_alpha, raw_curves, x_bins,
+#              interpolate)
 #
 
 test_that(".pmatch_mode() returns 'rocprc', 'basic' or 'aucroc'", {
@@ -73,8 +74,10 @@ pl1_create_mdat_mm <- function() {
   l4 <- c(1, 1, 0, 1)
   labels <- join_labels(l1, l2, l3, l4)
 
-  mmdata(scores, labels, modnames = c("m1", "m2"), dsids = c(1, 2),
-         expd_first = "modnames")
+  mmdata(scores, labels,
+    modnames = c("m1", "m2"), dsids = c(1, 2),
+    expd_first = "modnames"
+  )
 }
 
 pl1_create_mdat_mm <- function() {
@@ -90,8 +93,10 @@ pl1_create_mdat_mm <- function() {
   l4 <- c(1, 1, 0, 1)
   labels <- join_labels(l1, l2, l3, l4)
 
-  mmdata(scores, labels, modnames = c("m1", "m2"), dsids = c(1, 2),
-         expd_first = "modnames")
+  mmdata(scores, labels,
+    modnames = c("m1", "m2"), dsids = c(1, 2),
+    expd_first = "modnames"
+  )
 }
 
 test_that("pl_main() returns 'sscurves', 'sspoints', 'aucroc'", {
@@ -150,7 +155,6 @@ test_that("pl_main() returns 'mmcurves', 'mmpoints', 'aucroc'", {
 })
 
 test_that("pl_main() accepts 'calc_avg'", {
-
   f_check_calc_avg1 <- function(mdat, val1 = "logical", val2 = "logical") {
     for (ct in c("rocs", "prcs")) {
       pl1 <- pl_main(mdat, calc_avg = TRUE, raw_curves = TRUE)
@@ -191,16 +195,17 @@ test_that("pl_main() accepts 'calc_avg'", {
 })
 
 test_that("pl_main() accepts 'cb_alpha'", {
-
   f_check_cb_alpha1 <- function(mdat) {
     for (ct in c("rocs", "prcs")) {
       pl1 <- pl_main(mdat, cb_alpha = 0.05, raw_curves = TRUE)
       expect_equal(attr(attr(pl1[[ct]], "avgcurves"), "cb_zval"), 1.96,
-                   tolerance = 1e-2)
+        tolerance = 1e-2
+      )
 
       pl2 <- pl_main(mdat, cb_alpha = 0.01, raw_curves = TRUE)
       expect_equal(attr(attr(pl2[[ct]], "avgcurves"), "cb_zval"), 2.575,
-                   tolerance = 1e-3)
+        tolerance = 1e-3
+      )
     }
   }
 
@@ -208,11 +213,13 @@ test_that("pl_main() accepts 'cb_alpha'", {
     for (et in c("err", "acc", "sp", "sn", "prec")) {
       pl1 <- pl_main(mdat, "basic", cb_alpha = 0.05, raw_curves = TRUE)
       expect_equal(attr(attr(pl1[[et]], "avgcurves"), "cb_zval"), 1.96,
-                   tolerance = 1e-2)
+        tolerance = 1e-2
+      )
 
       pl2 <- pl_main(mdat, "basic", cb_alpha = 0.01, raw_curves = TRUE)
       expect_equal(attr(attr(pl2[[et]], "avgcurves"), "cb_zval"), 2.575,
-                   tolerance = 1e-3)
+        tolerance = 1e-3
+      )
     }
   }
 
@@ -223,10 +230,15 @@ test_that("pl_main() accepts 'cb_alpha'", {
   mdat2 <- pl1_create_mdat_mm()
   f_check_cb_alpha1(mdat2)
   f_check_cb_alpha2(mdat2)
+
+  # Directly check cb_alpha validation
+  expect_warning(
+    .validate_cb_alpha(cb_alpha = 0.01, calc_avg = FALSE),
+    "cb_alpha is ignored"
+  )
 })
 
 test_that("pl_main() accepts 'raw_curves'", {
-
   f_check_raw_curves1 <- function(mdat, val1 = "list", val2 = "list") {
     for (ct in c("rocs", "prcs")) {
       pl1 <- pl_main(mdat, raw_curves = FALSE)
@@ -264,6 +276,12 @@ test_that("pl_main() accepts 'raw_curves'", {
   mdat4 <- pl1_create_mdat_mm()
   f_check_raw_curves1(mdat4, "logical")
   f_check_raw_curves2(mdat4, "logical")
+
+  # Directly check cb_alpha validation
+  expect_warning(
+    .validate_raw_curves(raw_curves = TRUE, calc_avg = FALSE),
+    "raw_curves is ignored"
+  )
 })
 
 test_that("pl_main() accepts 'x_bins'", {
@@ -293,5 +311,47 @@ test_that("pl_main() accepts 'x_bins'", {
 
   mdat4 <- pl1_create_mdat_mm()
   f_check_x_bins(mdat4)
+})
 
+
+test_that("pl_main() accepts 'interpolate'", {
+  # check x_bins instead of interpolate (TRUE -> x_bins:1000, FALSE -> x_bins:0)
+  f_check_x_interpolate <- function(mdat) {
+    for (ct in c("rocs", "prcs")) {
+      pl1 <- pl_main(mdat, raw_curves = TRUE, x_bins = 10, interpolate = TRUE)
+      expect_equal(attr(pl1[[ct]][[1]], "args")[["x_bins"]], 10)
+
+      pl2 <- pl_main(mdat, raw_curves = TRUE, x_bins = 10, interpolate = FALSE)
+      expect_equal(attr(pl2[[ct]][[1]], "args")[["x_bins"]], 0)
+
+      pl3 <- pl_main(mdat, raw_curves = TRUE)
+      expect_equal(attr(pl3[[ct]][[1]], "args")[["x_bins"]], 1000)
+    }
+  }
+
+  s1 <- c(1, 2, 3, 4)
+  l1 <- c(1, 0, 1, 0)
+  mdat1 <- mmdata(s1, l1)
+  f_check_x_interpolate(mdat1)
+
+  mdat2 <- pl1_create_mdat_ms()
+  f_check_x_interpolate(mdat2)
+
+  mdat3 <- pl1_create_mdat_sm()
+  f_check_x_interpolate(mdat3)
+
+  mdat4 <- pl1_create_mdat_mm()
+  f_check_x_interpolate(mdat4)
+
+  expect_err_msg <- function(err_msg, mdat, interpolate) {
+    expect_error(pl_main(mdat, interpolate = interpolate), err_msg)
+  }
+
+  err_msg <- "interpolate is not a flag"
+  expect_err_msg(err_msg, mdat1, 0)
+  expect_err_msg(err_msg, mdat1, 1)
+  expect_err_msg(err_msg, mdat1, "T")
+  expect_err_msg(err_msg, mdat1, "F")
+  expect_err_msg(err_msg, mdat1, c(10, 20))
+  expect_err_msg(err_msg, mdat1, c(TRUE, FALSE))
 })

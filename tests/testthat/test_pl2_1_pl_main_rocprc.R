@@ -2,7 +2,8 @@
 
 context("PL 2: Pipeline main for ROC and Precision-Recall")
 # Test .pl_main_rocprc(mdat, model_type, dataset_type, class_name_pf,
-#                      cald_avg, cb_alpha, raw_curves, x_bins)
+#                      cald_avg, cb_alpha, raw_curves, x_bins,
+#                      interpolate)
 
 pl2_create_mdat_ms <- function() {
   s1 <- c(1, 2, 3, 4)
@@ -45,8 +46,10 @@ pl2_create_mdat_mm <- function() {
   l4 <- c(1, 1, 0, 1)
   labels <- join_labels(l1, l2, l3, l4)
 
-  mmdata(scores, labels, modnames = c("m1", "m2"), dsids = c(1, 2),
-         expd_first = "modnames")
+  mmdata(scores, labels,
+    modnames = c("m1", "m2"), dsids = c(1, 2),
+    expd_first = "modnames"
+  )
 }
 
 test_that(".pl_main_rocprc() accepts 'x_bins'", {
@@ -57,10 +60,10 @@ test_that(".pl_main_rocprc() accepts 'x_bins'", {
   pl <- .pl_main_rocprc(mdat, "single", "single", "ss", x_bins = 10)
 
   expect_equal(attr(pl[["rocs"]][[1]], "args")[["x_bins"]], 10)
-  expect_equal(attr(pl[["rocs"]][[1]], "args")[["x_bins"]], 10)
+  expect_equal(attr(pl[["prcs"]][[1]], "args")[["x_bins"]], 10)
 
   expect_err_msg <- function(err_msg, mdat, x_bins) {
-    eval(bquote(expect_error(.pl_main_rocprc(mdat, x_bins = x_bins), err_msg)))
+    expect_error(.pl_main_rocprc(mdat, x_bins = x_bins), err_msg)
   }
 
   err_msg <- "x_bins is not a number"
@@ -70,10 +73,26 @@ test_that(".pl_main_rocprc() accepts 'x_bins'", {
   expect_err_msg(err_msg, mdat, 1.5)
   expect_err_msg(err_msg, mdat, 0.001)
 
-  err_msg <- "x_bins not greater than or equal to 1L"
-  expect_err_msg(err_msg, mdat, 0)
+  err_msg <- "x_bins not greater than or equal"
+  expect_err_msg(err_msg, mdat, -1)
+})
 
+test_that(".pl_main_rocprc() accepts 'interpolate'", {
+  s1 <- c(1, 2, 3, 4)
+  l1 <- c(1, 0, 1, 0)
+  mdat <- mmdata(s1, l1)
 
+  pl1 <- .pl_main_rocprc(mdat, "single", "single", "ss", interpolate = TRUE)
+  expect_equal(attr(pl1[["rocs"]][[1]], "args")[["x_bins"]], 1000)
+  expect_equal(attr(pl1[["prcs"]][[1]], "args")[["x_bins"]], 1000)
+  expect_false(all(pl1[["rocs"]][[1]][["orig_points"]]))
+  expect_false(all(pl1[["prcs"]][[1]][["orig_points"]]))
+
+  pl2 <- .pl_main_rocprc(mdat, "single", "single", "ss", interpolate = FALSE)
+  expect_equal(attr(pl2[["rocs"]][[1]], "args")[["x_bins"]], 0)
+  expect_equal(attr(pl2[["prcs"]][[1]], "args")[["x_bins"]], 0)
+  expect_true(all(pl2[["rocs"]][[1]][["orig_points"]]))
+  expect_true(all(pl2[["prcs"]][[1]][["orig_points"]]))
 })
 
 test_that(".pl_main_rocprc() returns 'sscurves'", {
@@ -108,17 +127,19 @@ test_that(".pl_main_rocprc() returns 'mmcurves'", {
 })
 
 test_that(".pl_main_rocprc() accepts 'calc_avg'", {
-
   f_check_calc_avg <- function(mdat, mt, dt, pf, val1 = "logical",
                                val2 = "logical") {
-
     for (ct in c("rocs", "prcs")) {
-      pl1 <- .pl_main_rocprc(mdat, mt, dt, pf, calc_avg = TRUE,
-                             raw_curves = TRUE)
+      pl1 <- .pl_main_rocprc(mdat, mt, dt, pf,
+        calc_avg = TRUE,
+        raw_curves = TRUE
+      )
       expect_equal(typeof(attr(pl1[[ct]], "avgcurves")), val1)
 
-      pl2 <- .pl_main_rocprc(mdat, mt, dt, pf, calc_avg = FALSE,
-                             raw_curves = TRUE)
+      pl2 <- .pl_main_rocprc(mdat, mt, dt, pf,
+        calc_avg = FALSE,
+        raw_curves = TRUE
+      )
       expect_equal(typeof(attr(pl2[[ct]], "avgcurves")), val2)
     }
   }
@@ -139,18 +160,23 @@ test_that(".pl_main_rocprc() accepts 'calc_avg'", {
 })
 
 test_that(".pl_main_rocprc() accepts 'cb_alpha'", {
-
   f_check_cb_alpha <- function(mdat, mt, dt, pf) {
     for (ct in c("rocs", "prcs")) {
-      pl1 <- .pl_main_rocprc(mdat, mt, dt, pf, cb_alpha = 0.05,
-                             raw_curves = TRUE)
+      pl1 <- .pl_main_rocprc(mdat, mt, dt, pf,
+        cb_alpha = 0.05,
+        raw_curves = TRUE
+      )
       expect_equal(attr(attr(pl1[[ct]], "avgcurves"), "cb_zval"), 1.96,
-                   tolerance = 1e-2)
+        tolerance = 1e-2
+      )
 
-      pl2 <- .pl_main_rocprc(mdat, mt, dt, pf, cb_alpha = 0.01,
-                             raw_curves = TRUE)
+      pl2 <- .pl_main_rocprc(mdat, mt, dt, pf,
+        cb_alpha = 0.01,
+        raw_curves = TRUE
+      )
       expect_equal(attr(attr(pl2[[ct]], "avgcurves"), "cb_zval"), 2.575,
-                   tolerance = 1e-3)
+        tolerance = 1e-3
+      )
     }
   }
 
@@ -162,10 +188,8 @@ test_that(".pl_main_rocprc() accepts 'cb_alpha'", {
 })
 
 test_that(".pl_main_rocprc() accepts 'raw_curves'", {
-
   f_check_raw_curves <- function(mdat, mt, dt, pf, val1 = "list",
                                  val2 = "list") {
-
     for (ct in c("rocs", "prcs")) {
       pl1 <- .pl_main_rocprc(mdat, mt, dt, pf, raw_curves = FALSE)
       expect_equal(typeof(pl1[[ct]]), val1)
@@ -191,7 +215,6 @@ test_that(".pl_main_rocprc() accepts 'raw_curves'", {
 })
 
 test_that("curve object contains 'crvgrp', 'roc_curve', 'prc_curve'", {
-
   f_check_object <- function(mdat, mt, dt, pf, list_len) {
     pl <- .pl_main_rocprc(mdat, mt, dt, pf, raw_curves = TRUE)
 
@@ -219,5 +242,4 @@ test_that("curve object contains 'crvgrp', 'roc_curve', 'prc_curve'", {
 
   mdat4 <- pl2_create_mdat_mm()
   f_check_object(mdat4, "multiple", "multiple", "mm", 4)
-
 })
