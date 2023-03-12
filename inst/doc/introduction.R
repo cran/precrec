@@ -25,7 +25,6 @@ autoplot(sscurves)
 autoplot(sscurves, "PRC")
 
 ## ---- fig.show = 'hide', results = 'hold'-------------------------------------
-
 # 5 data sets with 50000 positives and 50000 negatives
 samp1 <- create_sim_samples(5, 50000, 50000)
 
