@@ -7,14 +7,14 @@ data(P10N10)
 # Calculate ROC and Precision-Recall curves
 sscurves <- evalmod(scores = P10N10$scores, labels = P10N10$labels)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Show ROC and Precision-Recall plots
 plot(sscurves)
 
 # Show a Precision-Recall plot
 plot(sscurves, "PRC")
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # The ggplot2 package is required
 library(ggplot2)
 
@@ -24,7 +24,7 @@ autoplot(sscurves)
 # Show a Precision-Recall plot
 autoplot(sscurves, "PRC")
 
-## ---- fig.show = 'hide', results = 'hold'-------------------------------------
+## ----fig.show = 'hide', results = 'hold'--------------------------------------
 # 5 data sets with 50000 positives and 50000 negatives
 samp1 <- create_sim_samples(5, 50000, 50000)
 
@@ -117,7 +117,7 @@ msmdat3 <- mmdata(samps2[["scores"]], samps2[["labels"]],
 # Calculate ROC and Precision-Recall curves for multiple models
 mscurves <- evalmod(msmdat3)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Show ROC and Precision-Recall curves with the ggplot2 package
 autoplot(mscurves)
 
@@ -141,7 +141,7 @@ smmdat2 <- mmdata(samps3[["scores"]], samps3[["labels"]],
 # Calculate curves for multiple test datasets and keep all the curves
 smcurves <- evalmod(smmdat2, raw_curves = TRUE)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Show an average Precision-Recall curve with the 95% confidence bounds
 autoplot(smcurves, "PRC", show_cb = TRUE)
 
@@ -171,7 +171,7 @@ mmmdat2 <- mmdata(samps4[["scores"]], samps4[["labels"]],
 # Calculate curves for multiple models and multiple test datasets
 mmcurves <- evalmod(mmmdat2)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Show average Precision-Recall curves
 autoplot(mmcurves, "PRC")
 
@@ -185,22 +185,22 @@ mmcurves.df <- as.data.frame(mmcurves)
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(mmcurves.df))
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Show all curves
 smcurves_all <- evalmod(smmdat2, raw_curves = TRUE)
 autoplot(smcurves_all)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # x_bins: 2
 smcurves_xb2 <- evalmod(smmdat2, x_bins = 2)
 autoplot(smcurves_xb2)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # x_bins: 10
 smcurves_xb10 <- evalmod(smmdat2, x_bins = 10)
 autoplot(smcurves_xb10)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # cb_alpha: 0.1 for 90% confidence band
 smcurves_cb1 <- evalmod(smmdat2, x_bins = 10, cb_alpha = 0.1)
 autoplot(smcurves_cb1)
@@ -216,7 +216,7 @@ data(M2N50F5)
 # Use knitr::kable to display the result in a table format
 knitr::kable(head(M2N50F5))
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Convert data frame to list
 nfold_list1 <- format_nfold(
   nfold_df = M2N50F5, score_cols = c(1, 2),
@@ -238,7 +238,7 @@ cvcurves <- evalmod(
 )
 autoplot(cvcurves)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # mmdata
 cvcurves2 <- mmdata(
   nfold_df = M2N50F5, score_cols = c(1, 2),
@@ -258,7 +258,7 @@ autoplot(cvcurves3)
 # Calculate basic evaluation measures
 mmpoins <- evalmod(mmmdat2, mode = "basic")
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Show normalized ranks vs. error rate and accuracy
 autoplot(mmpoins, c("error", "accuracy"))
 
@@ -268,7 +268,7 @@ autoplot(mmpoins, c("specificity", "sensitivity", "precision"))
 # Show normalized ranks vs. Matthews correlation coefficient and F-score
 autoplot(mmpoins, c("mcc", "fscore"))
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Show normalized ranks vs. scores and labels
 autoplot(mmpoins, c("score", "label"))
 
@@ -292,7 +292,7 @@ paucs.df <- pauc(curves.part)
 # Use knitr::kable to display the result in a table format
 knitr::kable(paucs.df)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Show ROC and Precision-Recall curves
 autoplot(curves.part)
 
@@ -347,7 +347,7 @@ simcurves1 <- evalmod(simmdat1)
 # Imbalanced dataset
 simcurves2 <- evalmod(simmdat2)
 
-## ---- fig.width=7, fig.show='hold'--------------------------------------------
+## ----fig.width=7, fig.show='hold'---------------------------------------------
 # Balanced dataset
 autoplot(simcurves1)
 
